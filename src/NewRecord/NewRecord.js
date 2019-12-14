@@ -23,8 +23,9 @@ export default class NewRecord extends React.Component {
         const { photo } = this.state;
       return (
         <View style={styles.container}>
-          <Text>NewwwRescord!</Text>
+          <Text>NewwwwRescord!</Text>
           <Text>faho!</Text>
+          <Text>fasho!</Text>
           {photo&& (
           <Image
           source = {{uri:photo.uri}}
