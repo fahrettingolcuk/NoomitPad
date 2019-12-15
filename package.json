@@ -16,8 +16,10 @@
     "react-native-image-picker": "^1.1.0",
     "react-native-reanimated": "^1.4.0",
     "react-native-screens": "^1.0.0-alpha.23",
+    "react-native-sqlite-storage": "^4.1.0",
     "react-navigation": "^4.0.10",
-    "react-navigation-tabs": "^2.6.2"
+    "react-navigation-tabs": "^2.6.2",
+    "sqlite3": "^4.1.1"
   },
   "devDependencies": {
     "@babel/core": "7.7.5",

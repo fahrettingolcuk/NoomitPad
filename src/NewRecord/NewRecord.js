@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import {View,Text,StyleSheet, Button, Image} from 'react-native';
 import ImagePicker from 'react-native-image-picker';
+
 export default class NewRecord extends React.Component {
     constructor(props){
         super(props);
