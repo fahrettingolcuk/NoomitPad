@@ -1,17 +1,31 @@
-
 import React,{Component} from 'react';
-import {createBottomTabNavigator} from 'react-navigation-tabs'
-import {createAppContainer} from 'react-navigation'
+import { createStore } from 'redux';
+import { Provider } from 'react-redux'
+import TabNavigator from './src/TabNavigator/TabNavigator'
 
-import CustomTab from './src/CustomTab/CustomTab'
-import HomeScreen from './src/HomeScreen/HomeScreen'
-import NewRecord from './src/NewRecord/NewRecord'
-import BookList from './src/BookList/BookList'
-const TabNavigator = createBottomTabNavigator({
-  Home:HomeScreen,
-  NewRec : NewRecord,
-  BookList : BookList,
-},{tabBarComponent:props=><CustomTab {...props}/>})
-export default createAppContainer(TabNavigator);
+const initialState = {  //GLOBAL STATE
+  counter: 0
+}
+const reducer = (state = initialState,action) => {
+  switch(action.type){
+    case 'INCREASE_COUNTER':
+    return{counter:state.counter+1}
+    case 'DECREASE_COUNTER':
+    return {counter:state.counter-1}
+  }
+  return state
+}
+const store = createStore(reducer) //STORE CONNECTION
+export default class App extends Component {
+
+  render() {
+    return (
+      <Provider store={store}>
+        <TabNavigator />
+      </Provider>
+    )
+  }
+}
+
 
 

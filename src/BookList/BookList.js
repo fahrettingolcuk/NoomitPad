@@ -17,7 +17,6 @@ class BookList extends React.Component {
             mydb.executeSql('SELECT * FROM Books', [], (tx, results) => {
                 for (var i = 0; i < results.rows.length; i++) {
                     this.setState({ bookList: [...this.state.bookList, results.rows.item(i)] })
-                    console.log(this.state.bookList);
                 }
                 this.setState({compleatedSql: true})
             })
@@ -45,8 +44,15 @@ class BookList extends React.Component {
                         />
                         : <Text>bekle</Text>    
             }
+    <Text>{this.props.counter}</Text>
             </View>
         )
     }
 }
-export default BookList
+function mapStateToProps(state){ //MAPLEME YAPARAK COMPONENTTE KULLANDIĞIMIZ COUNTERI APP TEKİ COUNTERE MATCHLEDİK
+    return{
+      counter:state.counter
+    }
+  }
+
+export default connect(mapStateToProps)(BookList)

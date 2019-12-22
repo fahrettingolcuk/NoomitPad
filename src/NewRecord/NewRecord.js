@@ -3,9 +3,10 @@ import { View, Text, StyleSheet, Button, Image, Alert } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 import { TextInput, TouchableOpacity, FlatList } from 'react-native-gesture-handler';
 import SQLite from 'react-native-sqlite-storage';
+import {connect} from 'react-redux'
 const db = SQLite.openDatabase({ name: 'myProject.db', location: 'default' });
 
-export default class NewRecord extends React.Component {
+class NewRecord extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -65,11 +66,29 @@ export default class NewRecord extends React.Component {
             <Text>SAVE BOOK</Text>
           </View>
         </TouchableOpacity>
+        <TouchableOpacity onPress={()=>this.props.Increase()}>
+            <Text>Increase</Text>
+          </TouchableOpacity>
+  <Text>{this.props.counter}</Text>
+          <TouchableOpacity onPress={()=>this.props.Decrease()}>
+            <Text>Decrease</Text>
+          </TouchableOpacity>
       </View>
     );
   }
 }
-
+function mapStateToProps(state){ //MAPLEME YAPARAK COMPONENTTE KULLANDIĞIMIZ COUNTERI APP TEKİ COUNTERE MATCHLEDİK
+  return{
+    counter:state.counter
+  }
+}
+function mapDispatchToProps(dispatch){ //EĞER SADECE LİSTELEME YAPACAKSAK BUNA GEREK YOK AMA STATE'İ DEĞİŞTİRCEKSEK BU LAZIM
+  return {
+    Increase : ()=>dispatch({type:'INCREASE_COUNTER'}),
+    Decrease : ()=>dispatch({type:'DECREASE_COUNTER'}),
+  }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(NewRecord)
 const styles = StyleSheet.create({
   container: {
     flex: 1,

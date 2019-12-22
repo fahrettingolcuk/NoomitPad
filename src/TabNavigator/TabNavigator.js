@@ -12,6 +12,6 @@ import BookList from '../BookList/BookList'
 const TabNavigator = createBottomTabNavigator({
     Home:HomeScreen,
     NewRec : NewRecord,
-    ListBook : BookList
+    BookList : BookList
   },{tabBarComponent:props=><CustomTab {...props}/>})
   export default createAppContainer(TabNavigator);
