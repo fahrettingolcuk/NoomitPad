@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Button, Image } from 'react-native';
+import { View, Text, StyleSheet, Button, Image, Alert } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 import { TextInput, TouchableOpacity, FlatList } from 'react-native-gesture-handler';
 import SQLite from 'react-native-sqlite-storage';
@@ -10,7 +10,6 @@ export default class NewRecord extends React.Component {
     super(props);
     this.state = {
       photo: null,
-      bookList: [],
       bookName: '',
       bookAuthor: '',
       bookUri: '',
@@ -18,11 +17,6 @@ export default class NewRecord extends React.Component {
     db.transaction((tx) => {
       //tx.executeSql('DROP TABLE Books')
       tx.executeSql('CREATE TABLE IF NOT EXISTS Books(book_id INTEGER PRIMARY KEY NOT NULL,book_name VARCHAR(30),book_author VARCHAR(30),book_uri VARCHAR(50))', []);
-      tx.executeSql('SELECT * FROM Books', [], (tx, results) => {
-        for (var i = 0; i < results.rows.length; i++) {
-          this.setState({ bookList: [...this.state.bookList, results.rows.item(i)] })
-        }
-      });
     })
   }
   handleChoosePhoto = () => {
@@ -40,9 +34,9 @@ export default class NewRecord extends React.Component {
       tx.executeSql('INSERT INTO Books (book_name,book_author,book_uri) VALUES (:book_name,:book_author,:book_uri)', [this.state.bookName, this.state.bookAuthor, this.state.bookUri]);
       tx.executeSql('SELECT * FROM Books', [], (tx, results) => {
         this.setState({ bookList: [...this.state.bookList, results.rows.item(results.rows.length - 1)] })
-        console.log(results.rows.item(results.rows.length - 1));
       });
     })
+    Alert.alert('SAVE BOOK');
   }
   render() {
     const { photo } = this.state;
@@ -61,7 +55,6 @@ export default class NewRecord extends React.Component {
           onChangeText={(value) => this.setState({ bookAuthor: value })}
         />
         {photo && (
-          console.log(photo),
           <Image
             source={{ uri: photo.uri }}
             style={{ width: 250, height: 250 }}
@@ -72,19 +65,6 @@ export default class NewRecord extends React.Component {
             <Text>SAVE BOOK</Text>
           </View>
         </TouchableOpacity>
-        <FlatList
-          data={this.state.bookList}
-          keyExtractor={({ id }, index) => index}
-          renderItem={({ item, index }) =>
-            <View>
-              <Image
-                source={{ uri: item.book_uri }}
-                style={{ width: 250, height: 250 }}
-              />
-              <Text>{item.book_name}</Text>
-              <Text>{item.book_author}</Text>
-            </View>}
-        />
       </View>
     );
   }

@@ -5,36 +5,37 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import { connect } from 'react-redux'
 
-
-const db = SQLite.openDatabase({ name: 'Records.db', location: 'default' });
+const db = SQLite.openDatabase({ name: 'myProject.db', location: 'default' });
 class BookList extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            bookList: [],
+        }
         db.transaction((mydb) => {
-            mydb.executeSql('SELECT * FROM Bookss', [], (tx, results) => {
+            mydb.executeSql('SELECT * FROM Books', [], (tx, results) => {
                 for (var i = 0; i < results.rows.length; i++) {
-                     this.setState({ BookItems: [...this.props.BookItems, results.rows.item(i)] })
+                    this.setState({ bookList: [...this.state.bookList, results.rows.item(i)] })
                 }
             })
-         })
-    }
-    componentDidUpdate() {
-        console.log('guncellendi');
+        })
     }
     render() {
         return (
             <View>
                 <Text>BOOK List</Text>
                 <FlatList
-                    data={this.props.BookItems}
-                    renderItem={({ item }) => <View>
-                        <Text>{item.book_name}</Text>
-                        <Image
-                            source={{ uri: item.book_uri }}
-                            style={{ width: 250, height: 250 }}
-                        />
-                    </View>}
-                    keyExtractor={item => item.id}
+                    data={this.state.bookList}
+                    keyExtractor={({ id }, index) => index}
+                    renderItem={({ item, index }) =>
+                        <View>
+                            <Image
+                                source={{ uri: item.book_uri }}
+                                style={{ width: 150, height: 150 }}
+                            />
+                            <Text>{item.book_name}</Text>
+                            <Text>{item.book_author}</Text>
+                        </View>}
                 />
             </View>
         )
