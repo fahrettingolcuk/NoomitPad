@@ -6,6 +6,8 @@ import SQLite from 'react-native-sqlite-storage';
 import {connect} from 'react-redux'
 const db = SQLite.openDatabase({ name: 'myProject.db', location: 'default' });
 
+let NewBookObj = [];
+
 class NewRecord extends React.Component {
   constructor(props) {
     super(props);
@@ -33,9 +35,10 @@ class NewRecord extends React.Component {
   saveBook = () => {
     db.transaction(tx => {
       tx.executeSql('INSERT INTO Books (book_name,book_author,book_uri) VALUES (:book_name,:book_author,:book_uri)', [this.state.bookName, this.state.bookAuthor, this.state.bookUri]);
-      tx.executeSql('SELECT * FROM Books', [], (tx, results) => {
-        this.setState({ bookList: [...this.state.bookList, results.rows.item(results.rows.length - 1)] })
-      });
+      tx.executeSql('SELECT * FROM Books',[],(tx,result)=>{
+        NewBookObj = result.rows.item(result.rows.length-1)
+        this.props.newBook();
+      })
     })
     Alert.alert('SAVE BOOK');
   }
@@ -66,26 +69,21 @@ class NewRecord extends React.Component {
             <Text>SAVE BOOK</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={()=>this.props.Increase()}>
-            <Text>Increase</Text>
-          </TouchableOpacity>
-  <Text>{this.props.counter}</Text>
-          <TouchableOpacity onPress={()=>this.props.Decrease()}>
-            <Text>Decrease</Text>
-          </TouchableOpacity>
       </View>
     );
   }
 }
 function mapStateToProps(state){ //MAPLEME YAPARAK COMPONENTTE KULLANDIĞIMIZ COUNTERI APP TEKİ COUNTERE MATCHLEDİK
   return{
-    counter:state.counter
+    counter:state.counter,
+    bookListRedux : state.bookListRedux
   }
 }
 function mapDispatchToProps(dispatch){ //EĞER SADECE LİSTELEME YAPACAKSAK BUNA GEREK YOK AMA STATE'İ DEĞİŞTİRCEKSEK BU LAZIM
   return {
     Increase : ()=>dispatch({type:'INCREASE_COUNTER'}),
     Decrease : ()=>dispatch({type:'DECREASE_COUNTER'}),
+    newBook : ()=>dispatch({type:'new_book',NewBook:JSON.stringify(NewBookObj)})
   }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(NewRecord)
