@@ -4,7 +4,7 @@ export default class HomeScreen extends React.Component {
     render() {
       return (
         <View style={styles.container}>
-          <Text>Homee!</Text>
+          <Text>Home!</Text>
         </View>
       );
     }

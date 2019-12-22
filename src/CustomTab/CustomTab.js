@@ -22,11 +22,6 @@ export default class CustomTab extends Component{
                 >
                 <View style={styles.tabBarItem}><Text>NewRecord</Text></View>
                 </TouchableOpacity>
-                <TouchableOpacity
-                onPress = {()=> navigate('ListBook')}
-                >
-                <View style={styles.tabBarItem}><Text>Book List</Text></View>
-                </TouchableOpacity>
             </View>
         )
     }

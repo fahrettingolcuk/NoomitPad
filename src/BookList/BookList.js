@@ -10,14 +10,13 @@ const db = SQLite.openDatabase({ name: 'Records.db', location: 'default' });
 class BookList extends React.Component {
     constructor(props) {
         super(props);
-        //db.transaction((mydb) => {
-        //    mydb.executeSql('SELECT * FROM Bookss', [], (tx, results) => {
-        //        for (var i = 0; i < results.rows.length; i++) {
-        //             this.setState({ BookItems: [...this.props.BookItems, results.rows.item(i)] })
-        //            //console.log(results.rows.item(i));
-        //        }
-        //    })
-        // })
+        db.transaction((mydb) => {
+            mydb.executeSql('SELECT * FROM Bookss', [], (tx, results) => {
+                for (var i = 0; i < results.rows.length; i++) {
+                     this.setState({ BookItems: [...this.props.BookItems, results.rows.item(i)] })
+                }
+            })
+         })
     }
     componentDidUpdate() {
         console.log('guncellendi');
@@ -41,10 +40,4 @@ class BookList extends React.Component {
         )
     }
 }
-function mapStateToProps(state) {
-    return {
-        counter: state.counter,
-        BookItems: state.BookItems
-    }
-}
-export default connect(mapStateToProps)(BookList)
+export default BookList
