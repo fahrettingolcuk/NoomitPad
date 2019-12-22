@@ -143,6 +143,14 @@ android {
         }
     }
     signingConfigs {
+            release {
+            if (project.hasProperty('noomitpad.keystore')) {
+                storeFile file(noomitpad.keystore)
+                storePassword noomitpad
+                keyAlias noomitpad-alias
+                keyPassword noomitpad
+            }
+        }
         debug {
             storeFile file('debug.keystore')
             storePassword 'android'
