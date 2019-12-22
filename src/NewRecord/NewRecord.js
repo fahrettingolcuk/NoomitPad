@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Button, Image, Alert } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
-import { TextInput, TouchableOpacity, FlatList } from 'react-native-gesture-handler';
+import { TextInput, TouchableOpacity} from 'react-native-gesture-handler';
 import SQLite from 'react-native-sqlite-storage';
+
+
 import {connect} from 'react-redux'
 const db = SQLite.openDatabase({ name: 'myProject.db', location: 'default' });
 
@@ -36,8 +38,8 @@ class NewRecord extends React.Component {
     db.transaction(tx => {
       tx.executeSql('INSERT INTO Books (book_name,book_author,book_uri) VALUES (:book_name,:book_author,:book_uri)', [this.state.bookName, this.state.bookAuthor, this.state.bookUri]);
       tx.executeSql('SELECT * FROM Books',[],(tx,result)=>{
-        NewBookObj = result.rows.item(result.rows.length-1)
-        this.props.newBook();
+        NewBookObj = result.rows.item(result.rows.length-1) //NEWBOOK has make new object
+        this.props.newBook();  //object have send to redux state
       })
     })
     Alert.alert('SAVE BOOK');
@@ -81,12 +83,14 @@ function mapStateToProps(state){ //MAPLEME YAPARAK COMPONENTTE KULLANDIĞIMIZ CO
 }
 function mapDispatchToProps(dispatch){ //EĞER SADECE LİSTELEME YAPACAKSAK BUNA GEREK YOK AMA STATE'İ DEĞİŞTİRCEKSEK BU LAZIM
   return {
-    Increase : ()=>dispatch({type:'INCREASE_COUNTER'}),
-    Decrease : ()=>dispatch({type:'DECREASE_COUNTER'}),
     newBook : ()=>dispatch({type:'new_book',NewBook:NewBookObj})
   }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(NewRecord)
+
+
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

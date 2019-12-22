@@ -24,6 +24,8 @@ const reducer = (state = initialState, action) => {
   return state
 }
 const store = createStore(reducer) //STORE CONNECTION
+
+
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -31,8 +33,8 @@ export default class App extends Component {
     db.transaction((mydb) => {
       mydb.executeSql('SELECT * FROM Books', [], (tx, results) => {
         for (var i = 0; i < results.rows.length; i++) {
-          bookItems.push(results.rows.item(i));
-        }
+          bookItems.push(results.rows.item(i)); 
+        }                                          //state initialize for book list
         initialState.bookListReduxExp = [...bookItems]
       })
     })
