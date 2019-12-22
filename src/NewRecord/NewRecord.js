@@ -83,7 +83,7 @@ function mapDispatchToProps(dispatch){ //EĞER SADECE LİSTELEME YAPACAKSAK BUNA
   return {
     Increase : ()=>dispatch({type:'INCREASE_COUNTER'}),
     Decrease : ()=>dispatch({type:'DECREASE_COUNTER'}),
-    newBook : ()=>dispatch({type:'new_book',NewBook:JSON.stringify(NewBookObj)})
+    newBook : ()=>dispatch({type:'new_book',NewBook:NewBookObj})
   }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(NewRecord)

@@ -13,17 +13,21 @@ class BookList extends React.Component {
                 <FlatList
                     data={this.props.bookListReduxExp}
                     keyExtractor={(index) => index}
-                    renderItem={({item}) =>
+                    renderItem={({ item }) =>
                         <View>
-                             <Image
+                            {/* <Image
                                 source={{ uri: JSON.parse(item).book_uri }}
                                 style={{ width: 150, height: 150 }}
                             /> 
                             <Text>{JSON.parse(item).book_name}</Text>
-                            <Text>{JSON.parse(item).book_author}</Text>
+                            <Text>{JSON.parse(item).book_author}</Text> */}
+                            <Image
+                                source={{ uri: item.book_uri }}
+                                style={{ width: 150, height: 150 }}
+                            />
+                            <Text>{item.book_name}</Text>
                         </View>}
                 />
-                <Text>sdsds</Text>
             </View>
         )
     }
