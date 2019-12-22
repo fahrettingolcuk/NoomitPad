@@ -15,12 +15,6 @@ class BookList extends React.Component {
                     keyExtractor={(index) => index}
                     renderItem={({ item }) =>
                         <View>
-                            {/* <Image
-                                source={{ uri: JSON.parse(item).book_uri }}
-                                style={{ width: 150, height: 150 }}
-                            /> 
-                            <Text>{JSON.parse(item).book_name}</Text>
-                            <Text>{JSON.parse(item).book_author}</Text> */}
                             <Image
                                 source={{ uri: item.book_uri }}
                                 style={{ width: 150, height: 150 }}
