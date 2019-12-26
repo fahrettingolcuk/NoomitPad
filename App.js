@@ -20,6 +20,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         bookListReduxExp: [...state.bookListReduxExp, action.NewBook]
       }
+      case 'delete_book':
+        return {
+          ...state,
+          bookListReduxExp: [...state.bookListReduxExp.filter(item=>item!=state.bookListReduxExp[action.DeleteBookIndex])]
+        }
   }
   return state
 }

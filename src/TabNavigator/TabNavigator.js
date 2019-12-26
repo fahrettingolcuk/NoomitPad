@@ -13,5 +13,5 @@ const TabNavigator = createBottomTabNavigator({
     Home:HomeScreen,
     NewRec : NewRecord,
     BookList : BookList
-  },{tabBarComponent:props=><CustomTab {...props}/>})
+},{tabBarComponent:props=><CustomTab {...props}/>})
   export default createAppContainer(TabNavigator);
