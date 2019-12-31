@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, Image, StyleSheet } from 'react-native';
+import { View, Text, FlatList, Image, StyleSheet, ImageBackground, Dimensions } from 'react-native';
 import { connect } from 'react-redux'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import SQLite from 'react-native-sqlite-storage';
@@ -10,7 +10,8 @@ let theIndex;
 class BookList extends React.Component {
     state = {
         modalVisible: false,
-        currentUri : ''
+        currentUri: '',
+        currentDetail: '',
     }
 
     deleteBook = (index, listIndex) => {
@@ -23,56 +24,70 @@ class BookList extends React.Component {
         })
         this.props.deleteBook();
     }
-    showModal = (uri) => {
+    showModal = (uri, desc) => {
         this.setState({
             modalVisible: !this.state.modalVisible,
-            currentUri : uri
+            currentUri: uri,
+            currentDetail: desc
         });
     };
 
     render() {
         return (
-            <View>
-                <Text>BOOK List</Text>
-                <CustomModal modalVisible={this.state.modalVisible} onClose={this.showModal}>
-                    <Text>s...a</Text>
-                    <Image
-                        source={{ uri: this.state.currentUri}}
-                        style={{ width: '100%', height: 500 }}
-                    />
-                </CustomModal>
-                <FlatList
-                    data={this.props.bookListReduxExp}
-                    keyExtractor={(index) => index}
-                    renderItem={({ item, index }) =>
-                        <View style={styles.listItem}>
-                            <View style={{ marginLeft: 15 }}>
-                                <Image
-                                    source={{ uri: item.book_uri }}
-                                    style={{ width: 150, height: 150 }}
-                                />
-                            </View>
-                            <TouchableOpacity
-                                style={{ backgroundColor: 'red' }}
-                                onPress={() => this.deleteBook(item.book_id, index)}
-                            >
-                                <Text>SİL</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity
-                                style={{ backgroundColor: 'green' }}
-                                onPress={() => this.showModal(item.book_uri)}
-                            >
-                                <Text>AÇ</Text>
-                            </TouchableOpacity>
-                            <View>
-                                <Text>{item.book_name}</Text>
-                                <Text>{item.book_descr}</Text>
+            <ImageBackground
+                source={require('../images/new-back.png')}
+                style={{ width: '100%', height: Dimensions.get('window').height }}
+                resizeMode='cover'
+            >
+                <View>
 
-                            </View>
-                        </View>
-                    }
-                />
-            </View>
+                    <Text>BOOK List</Text>
+                    <CustomModal modalVisible={this.state.modalVisible} onClose={this.showModal}>
+                        <ImageBackground
+                            source={{ uri: this.state.currentUri }}
+                            style={{ width: '100%', height: 500 }}
+                        >
+                            <Text>{this.state.currentDetail}</Text>
+                        </ImageBackground>
+                    </CustomModal>
+                    <Text>{this.props.bookListReduxExp.length} Showing Books</Text>
+                    <FlatList
+                        data={this.props.bookListReduxExp}
+                        keyExtractor={(index) => index}
+                        renderItem={({ item, index }) =>
+                            <TouchableOpacity
+                                
+                                onPress={() => this.showModal(item.book_uri, item.book_descr)}
+                            >
+                                <View style={styles.listItem}>
+                                    <View style={{ marginLeft: 15,padding:5 }}>
+                                        <Image
+                                            source={{ uri: item.book_uri }}
+                                            style={{ width: 150, height: 150}}
+                                        />
+                                    </View>
+                                    <View>
+                                        <Text>{item.book_name}</Text>
+                                        <Text>{item.book_descr}</Text>
+                                    </View>
+                                    <View style={{marginTop:-15}}>
+                                    <TouchableOpacity
+                                            style={{marginLeft: 'auto' }}
+                                            onPress={() => this.deleteBook(item.book_id, index)}
+                                        >
+                                            <Image
+                                                source={require('../images/delete.png')}
+                                                style={{ width: 50, height: 50 }}
+                                            />
+                                        </TouchableOpacity>
+                                    </View>
+                                </View>
+                            </TouchableOpacity>
+                        }
+                    />
+                </View>
+
+            </ImageBackground>
         )
     }
 }
@@ -91,8 +106,10 @@ export default connect(mapStateToProps, mapDispatchToProps)(BookList)
 
 const styles = StyleSheet.create({
     listItem: {
-        backgroundColor: 'yellow',
+        backgroundColor: 'grey',
         flexDirection: 'row',
         borderRadius: 15,
+        justifyContent:'space-between',
+        marginTop:15
     }
 })

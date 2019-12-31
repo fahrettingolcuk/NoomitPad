@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Button, Image, Alert } from 'react-native';
+import { View, Text, StyleSheet, Button, Image, Alert,ImageBackground,Dimensions } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import SQLite from 'react-native-sqlite-storage';
+import CustomStarRate from '../CustomStarRate/CustomStarRate';
 
 
 import { connect } from 'react-redux'
@@ -48,6 +49,11 @@ class NewRecord extends React.Component {
   render() {
     const { photo } = this.state;
     return (
+      <ImageBackground
+      source={require('../images/new-back.png')}
+      style={{ width: '100%', height: Dimensions.get('window').height }}
+      resizeMode='cover'
+  >
       <View style={styles.container}>
         <Text>Book Name</Text>
         <TextInput
@@ -85,6 +91,7 @@ class NewRecord extends React.Component {
           </View>
         </TouchableOpacity>
       </View>
+      </ImageBackground>
     );
   }
 }

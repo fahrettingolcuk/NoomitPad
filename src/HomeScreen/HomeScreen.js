@@ -1,21 +1,20 @@
 import React,{Component} from 'react';
-import {View,Text,StyleSheet,StatusBar} from 'react-native';
-import Video from 'react-native-video';
-import reco from '../video/reco.mp4'
+import {View,Text,StyleSheet,StatusBar,ImageBackground,Dimensions} from 'react-native';
+
+
 export default class HomeScreen extends React.Component {
     render() {
       return (
+        <ImageBackground
+        source={require('../images/new-back.png')}
+        style={{ width: '100%', height: Dimensions.get('window').height }}
+        resizeMode='cover'
+        >
         <View style={styles.container}>
           <StatusBar hidden={true} />
-          <Video
-          repeat
-          source={reco}
-          resizeMode = 'cover'
-          style={StyleSheet.absoluteFill}
-          />
-
           <Text style={{color:'white',fontSize:60,fontWeight:'100'}}>NOOMITPAD</Text>
         </View>
+        </ImageBackground>
       );
     }
   }

@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { View, Text, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import LinearGradient from 'react-native-linear-gradient'
-
 
 export default class CustomTab extends Component {
     constructor(props) {
@@ -17,21 +15,21 @@ export default class CustomTab extends Component {
                     onPress={() => navigate('Home')}
                 >
                     <View style={styles.tabBarItem}>
-                        <Icon name="home" size={30} color="white" />
+                        <Icon name="rocket" size={30} color="black" />
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity
                     onPress={() => navigate('BookList')}
                 >
                     <View style={styles.tabBarItem}>
-                        <Icon name="book" size={30} color="white" />
+                        <Icon name="book" size={30} color="black" />
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity
                     onPress={() => navigate('NewRec')}
                 >
                     <View style={styles.tabBarItem}>
-                    <Icon name="plus-circle" size={30} color="white" />
+                    <Icon name="plus-circle" size={30} color="black" />
                     </View>
                 </TouchableOpacity>
             </View>
@@ -41,12 +39,13 @@ export default class CustomTab extends Component {
 
 const styles = StyleSheet.create({
     tabBarContainer: {
-        height: 50,
+        height:50,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
         borderWidth:0.1,
-        backgroundColor:'black'
+        backgroundColor:'white'
+        
     },
     tabBarItem: {
         width: 100,
