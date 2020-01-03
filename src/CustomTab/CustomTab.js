@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet,Image } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default class CustomTab extends Component {
@@ -15,21 +15,30 @@ export default class CustomTab extends Component {
                     onPress={() => navigate('Home')}
                 >
                     <View style={styles.tabBarItem}>
-                        <Icon name="rocket" size={30} color="black" />
+                        <Image
+                        source={require('../images/home.png')}
+                        style={{width:30,height:30}}
+                        />
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity
                     onPress={() => navigate('BookList')}
                 >
                     <View style={styles.tabBarItem}>
-                        <Icon name="book" size={30} color="black" />
+                    <Image
+                        source={require('../images/book.png')}
+                        style={{width:30,height:30}}
+                        />
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity
                     onPress={() => navigate('NewRec')}
                 >
                     <View style={styles.tabBarItem}>
-                    <Icon name="plus-circle" size={30} color="black" />
+                    <Image
+                        source={require('../images/new-record.png')}
+                        style={{width:30,height:30}}
+                        />
                     </View>
                 </TouchableOpacity>
             </View>
@@ -44,7 +53,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         borderWidth:0.1,
-        backgroundColor:'white'
+        backgroundColor:'purple'
         
     },
     tabBarItem: {

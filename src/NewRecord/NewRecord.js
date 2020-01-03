@@ -97,7 +97,6 @@ class NewRecord extends React.Component {
 }
 function mapStateToProps(state) { //MAPLEME YAPARAK COMPONENTTE KULLANDIĞIMIZ COUNTERI APP TEKİ COUNTERE MATCHLEDİK
   return {
-    counter: state.counter,
     bookListRedux: state.bookListRedux
   }
 }

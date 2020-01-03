@@ -55,34 +55,37 @@ class BookList extends React.Component {
                         data={this.props.bookListReduxExp}
                         keyExtractor={(index) => index}
                         renderItem={({ item, index }) =>
-                            <TouchableOpacity
-                                
-                                onPress={() => this.showModal(item.book_uri, item.book_descr)}
-                            >
-                                <View style={styles.listItem}>
-                                    <View style={{ marginLeft: 15,padding:5 }}>
+                            <View style={styles.listItem}>
+                                <TouchableOpacity
+
+                                    onPress={() => this.showModal(item.book_uri, item.book_descr)}
+                                >
+                                    <View style={{flexDirection:'row'}}>
+                                    <View style={{ marginLeft: 15, padding: 5}}>
                                         <Image
                                             source={{ uri: item.book_uri }}
-                                            style={{ width: 150, height: 150}}
+                                            style={{ width: 150, height: 150 }}
                                         />
                                     </View>
                                     <View>
                                         <Text>{item.book_name}</Text>
                                         <Text>{item.book_descr}</Text>
                                     </View>
-                                    <View style={{marginTop:-15}}>
-                                    <TouchableOpacity
-                                            style={{marginLeft: 'auto' }}
-                                            onPress={() => this.deleteBook(item.book_id, index)}
-                                        >
-                                            <Image
-                                                source={require('../images/delete.png')}
-                                                style={{ width: 50, height: 50 }}
-                                            />
-                                        </TouchableOpacity>
                                     </View>
+                                </TouchableOpacity>
+                                <View style={{ marginTop: -15 }}>
+                                    <TouchableOpacity
+                                        style={{ marginLeft: 'auto' }}
+                                        onPress={() => this.deleteBook(item.book_id, index)}
+                                    >
+                                        <Image
+                                            source={require('../images/delete.png')}
+                                            style={{ width: 50, height: 50 }}
+                                        />
+                                    </TouchableOpacity>
                                 </View>
-                            </TouchableOpacity>
+
+                            </View>
                         }
                     />
                 </View>
@@ -109,7 +112,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'grey',
         flexDirection: 'row',
         borderRadius: 15,
-        justifyContent:'space-between',
-        marginTop:15
+        justifyContent: 'space-between',
+        marginTop: 15
     }
 })

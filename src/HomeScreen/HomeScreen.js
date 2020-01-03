@@ -7,7 +7,7 @@ export default class HomeScreen extends React.Component {
       return (
         <ImageBackground
         source={require('../images/new-back.png')}
-        style={{ width: '100%', height: Dimensions.get('window').height }}
+        style={{ width: '100%', height: Dimensions.get('window').height}}
         resizeMode='cover'
         >
         <View style={styles.container}>
