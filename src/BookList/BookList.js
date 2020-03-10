@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import SQLite from 'react-native-sqlite-storage';
 import CustomModal from '../CustomModal/CustomModal'
+import Icon from 'react-native-vector-icons/Ionicons'
 const db = SQLite.openDatabase({ name: 'myProject.db', location: 'default' });
 let theIndex;
 
@@ -35,13 +36,13 @@ class BookList extends React.Component {
     render() {
         return (
             <ImageBackground
-                source={require('../images/new-back.png')}
-                style={{ width: '100%', height: Dimensions.get('window').height }}
+                source={require('../images/BACKGROUND-noomit.png')}
+                style={{ width: '100%',height: Dimensions.get('window').height}}
                 resizeMode='cover'
             >
-                <View>
+                <View style={{alignItems:'center',marginTop:64,width:'100%'}}>
 
-                    <Text>BOOK List</Text>
+                    <Text style={{color:'#383687',fontWeight:'bold',fontSize:26}}>BOOK LIST</Text>
                     <CustomModal modalVisible={this.state.modalVisible} onClose={this.showModal}>
                         <ImageBackground
                             source={{ uri: this.state.currentUri }}
@@ -50,8 +51,9 @@ class BookList extends React.Component {
                             <Text>{this.state.currentDetail}</Text>
                         </ImageBackground>
                     </CustomModal>
-                    <Text>{this.props.bookListReduxExp.length} Showing Books</Text>
+                    {/* <Text>{this.props.bookListReduxExp.length} Showing Books</Text> */}
                     <FlatList
+                        style={{marginTop:36,width:'95%'}}
                         data={this.props.bookListReduxExp}
                         keyExtractor={(index) => index}
                         renderItem={({ item, index }) =>
@@ -60,27 +62,28 @@ class BookList extends React.Component {
 
                                     onPress={() => this.showModal(item.book_uri, item.book_descr)}
                                 >
-                                    <View style={{flexDirection:'row'}}>
-                                    <View style={{ marginLeft: 15, padding: 5}}>
+                                    <View style={{flexDirection:'row',width:'100%'}}>
+                                    <View style={{marginRight:'auto', padding: 5,marginLeft:36}}>
                                         <Image
                                             source={{ uri: item.book_uri }}
-                                            style={{ width: 150, height: 150 }}
+                                            style={{ width: 150, height: 150,borderRadius:180 }}
                                         />
                                     </View>
-                                    <View>
-                                        <Text>{item.book_name}</Text>
-                                        <Text>{item.book_descr}</Text>
+                                    <View style={{alignItems:'center',marginRight:100,marginTop:16}}>
+                                        <Text style={{color:'#383687',fontWeight:'bold',fontSize:25}}>{item.book_name}</Text>
+                                        <Text style={{color:'#383687',fontWeight:'bold',fontSize:15}}>{item.book_descr}</Text>
                                     </View>
                                     </View>
                                 </TouchableOpacity>
-                                <View style={{ marginTop: -15 }}>
+                                <View style={{justifyContent:'flex-end',marginRight:49}}>
                                     <TouchableOpacity
-                                        style={{ marginLeft: 'auto' }}
+                                        style={{ }}
                                         onPress={() => this.deleteBook(item.book_id, index)}
                                     >
-                                        <Image
-                                            source={require('../images/delete.png')}
-                                            style={{ width: 50, height: 50 }}
+                                        <Icon
+                                        name = 'ios-trash'
+                                        size = {49}
+
                                         />
                                     </TouchableOpacity>
                                 </View>
@@ -109,10 +112,19 @@ export default connect(mapStateToProps, mapDispatchToProps)(BookList)
 
 const styles = StyleSheet.create({
     listItem: {
-        backgroundColor: 'grey',
+        backgroundColor: '#F9F8FF',
         flexDirection: 'row',
         borderRadius: 15,
-        justifyContent: 'space-between',
-        marginTop: 15
+        justifyContent: 'center',
+        marginTop: 15,
+        width:'100%',
+        shadowColor:'#3700F2',
+        shadowRadius:10,
+        shadowOpacity:0.5,
+        shadowOffset:{
+            width:0,
+            height:3
+        }
+        ,elevation:8
     }
 })

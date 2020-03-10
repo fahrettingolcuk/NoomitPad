@@ -4,6 +4,7 @@ import ImagePicker from 'react-native-image-picker';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import SQLite from 'react-native-sqlite-storage';
 import CustomStarRate from '../CustomStarRate/CustomStarRate';
+import {Icon} from 'react-native-elements'
 
 
 import { connect } from 'react-redux'
@@ -50,44 +51,72 @@ class NewRecord extends React.Component {
     const { photo } = this.state;
     return (
       <ImageBackground
-      source={require('../images/new-back.png')}
+      source={require('../images/BACKGROUND-noomit.png')}
       style={{ width: '100%', height: Dimensions.get('window').height }}
       resizeMode='cover'
   >
       <View style={styles.container}>
-        <Text>Book Name</Text>
+
+
+
+        <Text style={{color:'#383687',fontWeight:'bold',fontSize:16}}>Book Name</Text>
+        <View style={{backgroundColor:'#C8CEFF',flexDirection:'row',alignItems:'center',borderRadius:180,width:'60%',
+        shadowColor:'#3100FF',shadowOffset:{width:0,height:3},shadowOpacity:0.5,shadowRadius:2,elevation:10        
+        }}>
+          <View style={{marginLeft:8}}>
+          <Icon
+          name='attachment'
+          />
+          </View>
         <TextInput
           placeholder='Book Name'
-          style={{ backgroundColor: 'grey', width: 150 }}
+          style={{width:'81%',color:'#383687',fontWeight:'bold'}}
           onChangeText={(value) => this.setState({ bookName: value })}
         />
-        <Text>Book Author</Text>
+        </View>
+
+
+
+        <Text style={{color:'#383687',fontWeight:'bold',fontSize:16,marginTop:16}}>Book Author</Text>
+        <View style={{backgroundColor:'#C8CEFF',flexDirection:'row',alignItems:'center',borderRadius:180,width:'60%',
+        shadowColor:'#3100FF',shadowOffset:{width:0,height:3},shadowOpacity:0.5,shadowRadius:2,elevation:10        
+        }}>
+          <View style={{marginLeft:8}}>
+          <Icon
+          name='person'
+          />
+          </View>
         <TextInput
           placeholder='Book Author'
-          style={{ backgroundColor: 'grey', width: 150 }}
+          style={{width:'81%',color:'#383687',fontWeight:'bold'}}
           onChangeText={(value) => this.setState({ bookAuthor: value })}
         />
-        <Text>Book Description</Text>
+        </View>
+
+
+
+        <Text style={{color:'#383687',fontWeight:'bold',fontSize:16,marginTop:16}}>Book Description</Text>
         <TextInput
           placeholder='Book Description'
           multiline = {true}
           numberOfLines = {5}
-          style={{ backgroundColor: 'grey', width: 250 }}
+          style={{ backgroundColor: '#C8CEFF', width: 250,color:'#383687',fontWeight:'bold',borderRadius:25,
+          shadowColor:'#3100FF',shadowOffset:{width:0,height:3},shadowOpacity:0.5,shadowRadius:2,elevation:10 }}
           onChangeText={(value) => this.setState({ bookDescription: value })}
         />
         {photo && (
           <Image
             source={{ uri: photo.uri }}
-            style={{ width: 150, height: 150 }}
+            style={{ width: 150, height: 150,marginTop:16 }}
           />)}
         <TouchableOpacity onPress={()=>this.handleChoosePhoto()}>
-          <View style={{marginTop:25,backgroundColor:'red',width:60,height:60,justifyContent:'center',alignItems:'center',borderRadius:180}}>
-            <Text style={{fontSize:40,fontWeight:'bold'}}>+</Text>
+          <View style={{marginTop:25,width:60,height:60,justifyContent:'center',alignItems:'center',borderRadius:180,borderColor:'#715BFF',borderWidth:3}}>
+            <Text style={{fontSize:64,fontWeight:'bold',color:'#715BFF',marginBottom:4}}>+</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => this.saveBook()}>
-          <View style={{ backgroundColor: 'green', width: 100, height: 50, justifyContent: 'center', alignItems: 'center', marginTop: 25 }}>
-            <Text style={{fontSize:15,fontWeight:'bold'}}>SAVE BOOK</Text>
+        <TouchableOpacity style={{marginTop:36}} onPress={() => this.saveBook()}>
+          <View style={{ backgroundColor: 'white', width: 169, height: 81, justifyContent: 'center', alignItems: 'center', marginTop:2,borderRadius:180 }}>
+            <Text style={{fontSize:45,fontWeight:'bold',color:'#715BFF'}}>SAVE</Text>
           </View>
         </TouchableOpacity>
       </View>
@@ -113,7 +142,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(NewRecord)
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    marginTop:81,
     alignItems: 'center'
   }
 });

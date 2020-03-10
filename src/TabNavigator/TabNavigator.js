@@ -10,6 +10,7 @@ import HomeScreen from '../HomeScreen/HomeScreen'
 import NewRecord from '../NewRecord/NewRecord'
 import BookList from '../BookList/BookList'
 
+import Icon from 'react-native-vector-icons/Ionicons'
 
 
 
@@ -17,8 +18,12 @@ const TabNavigator = createBottomTabNavigator({
     Home:{
      screen:HomeScreen,
      navigationOptions:{
-       tabBarIcon:({color,size})=>(
-       <Image source={require('../images/home.png')} style={{width:30,height:30,tintColor:color}}/>
+       tabBarIcon:({tintColor,size})=>(
+         <Icon
+         name = 'ios-home'
+         color = {tintColor}
+         size = {36}
+         />
        )
      }
      
@@ -26,20 +31,35 @@ const TabNavigator = createBottomTabNavigator({
     BookList :{
       screen:BookList,
       navigationOptions:{
-        tabBarIcon:({color,size})=>(<Image source={require('../images/book.png')} style={{width:30,height:30,tintColor:color}}/>)
+        tabBarLabel:'Book List',
+        tabBarIcon:({tintColor,size})=>(
+          <Icon
+          name = 'ios-book'
+          color = {tintColor}
+          size = {36}
+          />
+        )
       },
     },
     NewRec :{
       screen:NewRecord,
       navigationOptions:{
-        tabBarIcon:({color,size})=>(<Image source={require('../images/new-record.png')} style={{width:30,height:30,tintColor:color}}/>)
-      } 
+        tabBarLabel:'New Book',
+        tabBarIcon:({tintColor,size})=>(
+          <Icon
+          name = 'ios-document'
+          color = {tintColor}
+          size = {36}
+          />
+        )
+      },
     },
 },
 {
   initialRouteName:'Home',
   tabBarOptions:{
-    activeTintColor:'tomato',
+    activeTintColor:'white',
+    tabStyle:{backgroundColor:'#462BF3',marginTop:-1,marginBottom:-1}
   }
 }
 )

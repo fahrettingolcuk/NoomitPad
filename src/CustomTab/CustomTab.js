@@ -32,7 +32,7 @@ export default class CustomTab extends Component {
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    onPress={() => navigate('NewRec')}
+                    onPress={() => navigate('NewdsRec')}
                 >
                     <View style={styles.tabBarItem}>
                     <Image
@@ -53,14 +53,15 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         borderWidth:0.1,
-        backgroundColor:'purple'
+        backgroundColor:'black'
         
     },
     tabBarItem: {
         width: 100,
         height: '100%',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor:'red'
     },
 })
 

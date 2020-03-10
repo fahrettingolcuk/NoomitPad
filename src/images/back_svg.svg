@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="406.34" height="665.5" viewBox="0 0 406.34 665.5">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="1" stop-color="#1900ff"/>
+    </linearGradient>
+    <filter id="Path_1" x="0" y="492.908" width="406.34" height="172.592" filterUnits="userSpaceOnUse">
+      <feOffset dx="5" dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="7.5" result="blur"/>
+      <feFlood flood-color="#a92ac1" flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="BACKGROUND-noomit" transform="translate(17.5)">
+    <g id="Rectangle_1" data-name="Rectangle 1" stroke="#707070" stroke-width="1" opacity="0.33" fill="url(#linear-gradient)">
+      <rect width="360" height="640" stroke="none"/>
+      <rect x="0.5" y="0.5" width="359" height="639" fill="none"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, -17.5, 0)" filter="url(#Path_1)">
+      <path id="Path_1-2" data-name="Path 1" d="M0,558.178s9.187,15.453,62.265-14.264,90.845-3.566,124.529,14.264,63.286,13.076,92.887,0,81.659,0,81.659,0V658.03H0Z" transform="translate(17.5 -18.03)" fill="#2000ff" opacity="0.47"/>
+    </g>
+    <path id="Path_3" data-name="Path 3" d="M0,551.3s9.187,11.621,62.265-10.727S153.11,537.89,186.794,551.3s63.286,9.833,92.887,0,81.659,0,81.659,0v75.089H0Z" transform="translate(0 13.613)" fill="#1900ff" opacity="0.38"/>
+    <path id="Path_4" data-name="Path 4" d="M0,521.595s60.625,53.4,153.11,0,128.595,0,158.214,0H359.3V640H0Z" fill="#3200ff" opacity="0.11"/>
+    <path id="Path_5" data-name="Path 5" d="M0,497.863s72.472-45.678,132.7,7.4,109.219-9.7,155.152-7.4S359.3,516.491,359.3,516.491v124.53H0Z" fill="#5400ff" opacity="0.06"/>
+    <g id="LOGO" transform="translate(86 -169)">
+      <text id="N_" data-name="N " transform="translate(94 223)" fill="#383687" font-size="50" font-family="NirmalaUI-Bold, Nirmala UI" font-weight="700" letter-spacing="0.05em"><tspan x="-27.898" y="0">N </tspan></text>
+      <text id="P" transform="translate(105 223)" fill="#a7aff3" font-size="50" font-family="NirmalaUI-Bold, Nirmala UI" font-weight="700" letter-spacing="0.05em"><tspan x="-15.356" y="0">P</tspan></text>
+    </g>
+  </g>
+</svg>
